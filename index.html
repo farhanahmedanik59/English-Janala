@@ -4,19 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>English Janala</title>
+    <!-- daisyui+tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="shortcut icon" href="" type="image/x-icon" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/english-janala-resources/assets/logo.png" type="image/x-icon" />
+    <!-- fontawsome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- css script -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- navbar  -->
     <section>
-      <nav class="h-[82px] border bg-[#badeff42] flex items-center justify-between">
-        <div class="flex items-center font-semibold ml-[83px]">
-          <h1>English</h1>
+      <nav class="h-[82px] bg-[#badeff42] flex items-center justify-between">
+        <div class="flex items-center font-semibold md:ml-[83px]">
+          <div class="dropdown md:hidden">
+            <div tabindex="0" role="button" class="btn m-1 bg-[#badeff42]"><i class="fa-solid fa-bars"></i></div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+              <a href=""
+                ><button class="btn border-[#422ad5] w-full"><img src="/english-janala-resources/assets/fa-circle-question.png" alt="" />FAQ</button></a
+              >
+              <a href=""
+                ><button class="btn border-[#422ad5] w-full mt-2"><img src="/english-janala-resources/assets/fa-book-open.png" alt="" />Learn</button></a
+              >
+              <a href=""
+                ><button class="btn border-[#422ad5] w-full mt-2"><img src="/english-janala-resources/assets/fa-arrow-right-from-bracket.png" alt="" />Logout</button></a
+              >
+            </ul>
+          </div>
+          <h1 class="font-popins">English</h1>
           <img src="/english-janala-resources/assets/logo.png" alt="" />
           <h1>জানালা</h1>
         </div>
-        <div class="mr-[80px] flex gap-1 text-[#422ad5]">
+        <div class="hidden md:block md:mr-[80px] flex gap-1 text-[#422ad5]">
           <a href=""
             ><button class="btn border-[#422ad5]"><img src="/english-janala-resources/assets/fa-circle-question.png" alt="" />FAQ</button></a
           >
@@ -29,5 +60,41 @@
         </div>
       </nav>
     </section>
+    <!-- banner section start -->
+    <section>
+      <div class="md:max-w-[95%] m-auto flex md:items-center flex-col-reverse md:flex-row text-center md:text-left">
+        <div class="md:w-[55%]">
+          <h1 class="text-5xl font-bold"><span class="text-sky-500">Engish</span> is Easy</h1>
+          <p class="mt-[40px] font-siliguri font-medium text-[24px]">
+            আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br />আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে<br />
+            যাবে অন্য একটি Level এ
+          </p>
+          <input type="text" placeholder="Enter Your Name" class="input p-2 rounded-sm h-[40px] mt-[40px]" />
+          <br />
+          <input type="text" placeholder="............" class="input p-2 rounded-sm h-[40px] mt-[23px]" />
+          <br />
+          <button class="btn join-item mt-[20px] bg-[#422AD5] text-white h-[40px]">Get Started</button>
+        </div>
+        <div>
+          <img src="/english-janala-resources/assets/hero-student.png" class="w-full" alt="" />
+        </div>
+      </div>
+    </section>
+    <!-- lesson section -->
+    <section>
+      <div>
+        <h1 class="text-4xl font-bold text-center mt-8"><span class="text-sky-500">Lets</span> Learn Vocabularies</h1>
+        <div id="level-container" class="flex justify-center gap-7 flex-wrap mt-6"></div>
+      </div>
+    </section>
+    <section>
+      <div class="max-w-[95%] bg-gray-100 m-auto p-6 mt-8 grid grid-cols-1 md:grid-cols-3 gap-5 mb-5" id="lesson-info-container">
+        <div class="col-span-full text-center p-9">
+          <h4>আপনি এখনো কোন Lesson Select করেন ন</h4>
+          <h1 class="text-4xl mt-6 font-bold">একটি Lesson Select করুন।</h1>
+        </div>
+      </div>
+    </section>
+    <script src="/script/script.js"></script>
   </body>
 </html>
