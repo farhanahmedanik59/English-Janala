@@ -109,3 +109,35 @@ const manageSpinner = (status) => {
     spinner.classList.add("hidden");
   }
 };
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  const input = document.getElementById("input-search");
+  const searchValue = input.value.trim().toLowerCase();
+  fetch("https://openapi.programming-hero.com/api/words/all").then((res) =>
+    res.json().then((response) => {
+      const data = response.data;
+      const filterWors = data.filter((word) => word.word.toLowerCase().includes(searchValue));
+      const parentDiv = document.getElementById("lesson-info-container");
+      parentDiv.innerHTML = "";
+      filterWors.forEach((word) => {
+        console.log(word);
+        const childDiv = document.createElement("div");
+        childDiv.innerHTML = `<div class="rounded-lg bg-white text-center">
+          <h1 class="pt-[56px] text-3xl font-bold">${word.word}</h1>
+          <p class="mt-6 text-1xl font-bold">Meaning/Pronounciation</p>
+          <h1 class="mt-6 text-2xl font-bold">"${word.meaning === null ? "{Meaning Not Found}'" : word.meaning} / ${word.pronunciation}"</h1>
+          <div  class="flex justify-between max-w-[70%] m-auto mt-[66px] pb-[60px]">
+            <div onclick="loadinfo(${word.id})" class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200">
+              <img src="/english-janala-resources/assets/fa-circle-question.png" alt="" />
+            </div>
+            <div>
+              <span class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200"><i class="fa-solid fa-volume-high"></i></span>
+            </div>
+          </div>
+        </div>
+    `;
+        parentDiv.appendChild(childDiv);
+      });
+    })
+  );
+});
