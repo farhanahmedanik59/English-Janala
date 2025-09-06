@@ -57,7 +57,7 @@ const loadWord = async (id) => {
               <img src="/english-janala-resources/assets/fa-circle-question.png" alt="" />
             </div>
             <div>
-              <span class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200"><i class="fa-solid fa-volume-high"></i></span>
+              <span class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200 " onclick="speak(${dataByLevel.id})"><i class="fa-solid fa-volume-high"></i></span>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ const showinfo = (data) => {
     m = syno.map((all) => `<div class="p-4 bg-[#EDF7FF] rounded-sm">${all}</div>`);
     return m.join(" ");
   };
-  console.log(syn(synonyms));
+
   modal.innerHTML = "";
   modal.innerHTML = `<div class="modal-box">
         <h1 class="font-bold">${data.word} (<i class="fa-solid fa-microphone"></i>: ${data.pronunciation})</h1>
@@ -113,6 +113,9 @@ const manageSpinner = (status) => {
 document.getElementById("btn-search").addEventListener("click", () => {
   const input = document.getElementById("input-search");
   const searchValue = input.value.trim().toLowerCase();
+  if (searchValue === "") {
+    return;
+  }
   fetch("https://openapi.programming-hero.com/api/words/all").then((res) =>
     res.json().then((response) => {
       const data = response.data;
@@ -120,7 +123,6 @@ document.getElementById("btn-search").addEventListener("click", () => {
       const parentDiv = document.getElementById("lesson-info-container");
       parentDiv.innerHTML = "";
       filterWors.forEach((word) => {
-        console.log(word);
         const childDiv = document.createElement("div");
         childDiv.innerHTML = `<div class="rounded-lg bg-white text-center">
           <h1 class="pt-[56px] text-3xl font-bold">${word.word}</h1>
@@ -131,7 +133,7 @@ document.getElementById("btn-search").addEventListener("click", () => {
               <img src="/english-janala-resources/assets/fa-circle-question.png" alt="" />
             </div>
             <div>
-              <span class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200"><i class="fa-solid fa-volume-high"></i></span>
+              <span class="p-3 bg-[#1a91ff1a] rounded-md hover:cursor-pointer hover:bg-gray-200" onclick="speak(${word.id})"><i class="fa-solid fa-volume-high"></i></span>
             </div>
           </div>
         </div>
@@ -141,3 +143,16 @@ document.getElementById("btn-search").addEventListener("click", () => {
     })
   );
 });
+const speak = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/word/${id}`).then((res) =>
+    res.json().then((response) => {
+      const data = response.data.word;
+      function pronounceWord(word) {
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "en-EN"; // English
+        window.speechSynthesis.speak(utterance);
+      }
+      pronounceWord(data);
+    })
+  );
+};
